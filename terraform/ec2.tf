@@ -21,7 +21,6 @@ admin_pw=${var.server_password}
 
 echo "##################### OpenVPN setup complete #####################"
 
-EOD
 EOF
 
   tags = {
