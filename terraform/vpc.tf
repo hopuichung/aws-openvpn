@@ -10,7 +10,7 @@ resource "aws_vpc" "openvpn_vpc" {
 resource "aws_subnet" "openvpn_vpc_subnet" {
   vpc_id            = aws_vpc.openvpn_vpc.id
   cidr_block        = "172.16.10.0/24"
-  availability_zone = "ap-east-1a"
+  availability_zone = "${var.server_region}a"
 
   tags = {
     Project = "openvpn-server"

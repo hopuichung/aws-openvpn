@@ -11,14 +11,14 @@ terraform {
   backend "s3" {
     bucket         = "mhho-terraform-openvpn-backend"
     key            = "terraform.tfstate"
-    region         = "ap-east-1"
+    region         = var.server_region
     dynamodb_table = "mhho-terraform-openvpn-state"
   }
 }
 
 provider "aws" {
   profile = "default"
-  region  = "ap-east-1"
+  region  = var.server_region
 }
 
 # budget setting

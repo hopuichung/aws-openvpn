@@ -5,7 +5,7 @@ resource "aws_instance" "openvpn_server" {
   key_name               = "michaelho2022"
   subnet_id              = aws_subnet.openvpn_vpc_subnet.id
   vpc_security_group_ids = [aws_security_group.openvpn_security_group.id]
-  user_data = <<EOF
+  user_data              = <<EOF
 #!/bin/bash -x
 public_hostname=michaelhoaws.ddns.net
 
@@ -15,11 +15,9 @@ reroute_gw=1
 # Route user DNS queries via openvpn
 reroute_dns=1
 
-systemctl enable openvpnas
-systemctl start openvpnas
-
-# Wait for OpenVPN to initialize
-sleep 30
+# Setup admin
+admin_user=${var.server_username}
+admin_pw=${var.server_password}
 
 echo "##################### OpenVPN setup complete #####################"
 
