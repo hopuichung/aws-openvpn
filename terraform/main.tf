@@ -11,7 +11,7 @@ terraform {
   backend "s3" {
     bucket         = "mhho-terraform-openvpn-backend"
     key            = "terraform.tfstate"
-    region         = var.server_region
+    region         = "ap-east-1"
     dynamodb_table = "mhho-terraform-openvpn-state"
   }
 }
