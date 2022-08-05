@@ -14,6 +14,10 @@ This project is for recording my setup for OpenVPN back to HK.
 
 ## Overall Steps
 - Setup the AWS infra for OpenVPN server using EC2 in ap-east-1 region by terraform
+  - `terraform init`
+  - `terraform plan -out tfplan`
+  - `terraform apply tfplan`
+- Login to the ec2 with "openvpnas" user
 - Follow https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-tiered-appliance-quick-start-guide/
 - Setup no-ip ddns, follow https://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client-on-ubuntu/
   - choose the ens interface for the no-ip client
