@@ -34,6 +34,44 @@ resource "aws_budgets_budget" "cost" {
     threshold                  = 80
     threshold_type             = "PERCENTAGE"
     notification_type          = "FORECASTED"
-    subscriber_email_addresses = [""]
+    subscriber_email_addresses = var.cost_alert_emails
   }
 }
+
+# VPC
+module "vpc" {
+  source = "./infra/vpc"
+
+  server_region              = var.server_region
+  vpc_cidr                   = var.vpc_cidr
+  vpc_public_subnet_1_cidr   = var.vpc_public_subnet_1_cidr
+  vpc_public_subnet_2_cidr   = var.vpc_public_subnet_2_cidr
+  vpc_private_subnet_1_cidr  = var.vpc_private_subnet_1_cidr
+  vpc_private_subnet_2_cidr  = var.vpc_private_subnet_2_cidr
+  openvpn_admin_ip_whitelist = var.openvpn_admin_ip_whitelist
+}
+
+# openvpn
+module "openvpn_ec2" {
+  source = "./openvpn/ec2"
+
+  openvpn_ec2_ami                 = var.openvpn_ec2_ami
+  openvpn_hostname                = var.openvpn_hostname
+  openvpn_server_username         = var.openvpn_server_username
+  openvpn_server_password         = var.openvpn_server_password
+  openvpn_admin_ip_whitelist      = var.openvpn_admin_ip_whitelist
+  vpc_private_subnet_1_cidr       = var.vpc_private_subnet_1_cidr
+  vpc_private_subnet_2_cidr       = var.vpc_private_subnet_2_cidr
+  openvpn_ec2_security_group_id   = module.vpc.openvpn_ec2_security_group_id
+  openvpn_vpc_private_subnet_1_id = module.vpc.openvpn_vpc_private_subnet_1_id
+}
+
+# module "openvpn_alb" {
+#   source = "./openvpn/alb"
+
+#   openvpn_vpc_id                 = module.vpc.openvpn_vpc_id
+#   openvpn_alb_sg_id              = module.vpc.openvpn_alb_security_group_id
+#   openvpn_admin_ip_whitelist     = var.openvpn_admin_ip_whitelist
+#   openvpn_vpc_public_subnet_1_id = module.vpc.openvpn_vpc_public_subnet_1_id
+#   openvpn_vpc_public_subnet_2_id = module.vpc.openvpn_vpc_public_subnet_2_id
+# }

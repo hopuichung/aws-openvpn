@@ -12,14 +12,20 @@ This project is for recording my setup for OpenVPN back to HK.
 - Having the no-ip ddns created
   - for using hostname to connect to openvpn server instead of using the ec2 public ip
 
+### Optional
+- Having domain and created certificate
+
 ## Overall Steps
+- (Optional) Setup route 53 domain first in AWS
+  - Link the domain hosted zone in terraform
+    - ``
 - Setup the AWS infra for OpenVPN server using EC2 in ap-east-1 region by terraform
   - `terraform init`
   - `terraform plan -out tfplan -var-file="ap-east-1.tfvars"`
   - `terraform apply tfplan`
 - Login to the ec2 with "openvpnas" user
 - Follow https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-tiered-appliance-quick-start-guide/
-- Setup no-ip ddns, follow https://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client-on-ubuntu/
-  - choose the ens interface for the no-ip client
+<!-- - Setup no-ip ddns, follow https://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client-on-ubuntu/
+  - choose the ens interface for the no-ip client -->
 - Go to the https://{your-domain-name}:943/ for the admin page to configure the correct domain name and download the ovpn file
 - Use the ovpn file to connect and verify can establish the openvpn connection

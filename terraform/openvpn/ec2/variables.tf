@@ -1,9 +1,3 @@
-variable "server_region" {
-  type        = string
-  default     = "ap-east-1"
-  description = "openvpn server default region - Hong Kong"
-}
-
 variable "openvpn_ec2_ami" {
   type        = string
   default     = "ami-079176f64e2f11364" # default ap-east-1 openvpn access server ami
@@ -28,22 +22,10 @@ variable "openvpn_server_password" {
   description = "Admin password to access server"
 }
 
-variable "vpc_cidr" {
-  type        = string
-  default     = "172.16.0.0/16"
-  description = "VPC CIDR"
-}
-
-variable "vpc_public_subnet_1_cidr" {
-  type        = string
-  default     = "172.16.0.0/24"
-  description = "VPC Public Subnet CIDR"
-}
-
-variable "vpc_public_subnet_2_cidr" {
-  type        = string
-  default     = "172.16.1.0/24"
-  description = "VPC Public Subnet CIDR"
+variable "openvpn_admin_ip_whitelist" {
+  type        = list(any)
+  default     = []
+  description = "IP addresses that can connect to the openvpn admin"
 }
 
 variable "vpc_private_subnet_1_cidr" {
@@ -58,14 +40,14 @@ variable "vpc_private_subnet_2_cidr" {
   description = "VPC Public Subnet CIDR"
 }
 
-variable "openvpn_admin_ip_whitelist" {
-  type        = list(any)
-  default     = []
-  description = "IP addresses that can connect to the openvpn admin"
+variable "openvpn_ec2_security_group_id" {
+  type        = string
+  default     = ""
+  description = "EC2 Security Group ID"
 }
 
-variable "cost_alert_emails" {
-  type        = list(any)
-  default     = []
-  description = "emails to be used for cost alert"
+variable "openvpn_vpc_private_subnet_1_id" {
+  type        = string
+  default     = ""
+  description = "OpenVPN VPC Private Subnet 1 ID"
 }
