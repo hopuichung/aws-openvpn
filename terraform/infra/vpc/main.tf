@@ -124,16 +124,6 @@ resource "aws_main_route_table_association" "openvpn_main_route_table_associatio
   route_table_id = aws_route_table.openvpn_route_table.id
 }
 
-# EIP settings
-# resource "aws_eip" "openvpn_eip" {
-#   vpc = true
-# }
-
-# resource "aws_eip_association" "eip_assoc" {
-#   instance_id   = aws_instance.openvpn_server.id
-#   allocation_id = aws_eip.openvpn_eip.id
-# }
-
 # EC2 Security group
 resource "aws_security_group" "openvpn_ec2_security_group" {
   name        = "openvpn-ec2-security-group"

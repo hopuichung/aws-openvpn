@@ -64,6 +64,7 @@ module "openvpn_ec2" {
   vpc_private_subnet_2_cidr       = var.vpc_private_subnet_2_cidr
   openvpn_ec2_security_group_id   = module.vpc.openvpn_ec2_security_group_id
   openvpn_vpc_private_subnet_1_id = module.vpc.openvpn_vpc_private_subnet_1_id
+  openvpn_vpc_public_subnet_1_id  = module.vpc.openvpn_vpc_public_subnet_1_id
 }
 
 # module "openvpn_alb" {

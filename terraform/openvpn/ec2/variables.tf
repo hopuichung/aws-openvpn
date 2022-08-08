@@ -51,3 +51,9 @@ variable "openvpn_vpc_private_subnet_1_id" {
   default     = ""
   description = "OpenVPN VPC Private Subnet 1 ID"
 }
+
+variable "openvpn_vpc_public_subnet_1_id" {
+  type        = string
+  default     = ""
+  description = "OpenVPN VPC Public Subnet 1 ID"
+}
