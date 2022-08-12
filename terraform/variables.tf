@@ -10,6 +10,12 @@ variable "openvpn_ec2_ami" {
   description = "EC2 AMI to be used"
 }
 
+variable "domain_name" {
+  type        = string
+  default     = ""
+  description = "domain name for route 53 custom domain"
+}
+
 variable "openvpn_hostname" {
   type        = string
   default     = ""

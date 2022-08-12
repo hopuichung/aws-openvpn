@@ -17,8 +17,6 @@ This project is for recording my setup for OpenVPN back to HK.
 
 ## Overall Steps
 - (Optional) Setup route 53 domain first in AWS
-  - Link the domain hosted zone in terraform
-    - ``
 - Setup the AWS infra for OpenVPN server using EC2 in ap-east-1 region by terraform
   - `terraform init`
   - `terraform plan -out tfplan -var-file="ap-east-1.tfvars"`

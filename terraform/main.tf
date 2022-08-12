@@ -56,6 +56,7 @@ module "openvpn_ec2" {
   source = "./openvpn/ec2"
 
   openvpn_ec2_ami                 = var.openvpn_ec2_ami
+  domain_name                     = var.domain_name
   openvpn_hostname                = var.openvpn_hostname
   openvpn_server_username         = var.openvpn_server_username
   openvpn_server_password         = var.openvpn_server_password

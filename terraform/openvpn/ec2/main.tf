@@ -1,8 +1,8 @@
 # EC2 instance
 resource "aws_instance" "openvpn_server" {
-  ami                    = var.openvpn_ec2_ami
-  instance_type          = "t3.nano"
-  key_name               = "michaelho2022"
+  ami           = var.openvpn_ec2_ami
+  instance_type = "t3.nano"
+  key_name      = "michaelho2022"
   # subnet_id              = var.openvpn_vpc_private_subnet_1_id
   subnet_id              = var.openvpn_vpc_public_subnet_1_id
   vpc_security_group_ids = [var.openvpn_ec2_security_group_id]
@@ -42,4 +42,20 @@ resource "aws_eip" "openvpn_eip" {
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.openvpn_server.id
   allocation_id = aws_eip.openvpn_eip.id
+}
+
+# Create custom domain record for ec2
+data "aws_route53_zone" "myzone" {
+  name         = var.domain_name
+  private_zone = false
+}
+
+resource "aws_route53_record" "ec2" {
+  zone_id = data.aws_route53_zone.myzone.zone_id
+  name    = "openvpn.${var.domain_name}"
+  type    = "A"
+  ttl     = 300
+  records = [
+    aws_instance.openvpn_server.public_ip
+  ]
 }
