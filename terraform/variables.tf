@@ -75,3 +75,9 @@ variable "cost_alert_emails" {
   default     = []
   description = "emails to be used for cost alert"
 }
+
+variable "lets_encrypt_email" {
+  type        = string
+  default     = ""
+  description = "Email for Let's Encrypt SSL Certificate Registration"
+}

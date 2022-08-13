@@ -6,3 +6,4 @@ domain_name                = "test.com"
 openvpn_hostname           = "ovpn.test.com"
 openvpn_admin_ip_whitelist = ["0.0.0.0/0"]
 cost_alert_emails          = ["test@test.com"]
+lets_encrypt_email         = "test@test.com"

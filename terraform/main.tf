@@ -66,6 +66,7 @@ module "openvpn_ec2" {
   openvpn_ec2_security_group_id   = module.vpc.openvpn_ec2_security_group_id
   openvpn_vpc_private_subnet_1_id = module.vpc.openvpn_vpc_private_subnet_1_id
   openvpn_vpc_public_subnet_1_id  = module.vpc.openvpn_vpc_public_subnet_1_id
+  lets_encrypt_email              = var.lets_encrypt_email
 }
 
 # module "openvpn_alb" {

@@ -63,3 +63,9 @@ variable "openvpn_vpc_public_subnet_1_id" {
   default     = ""
   description = "OpenVPN VPC Public Subnet 1 ID"
 }
+
+variable "lets_encrypt_email" {
+  type        = string
+  default     = ""
+  description = "Email for Let's Encrypt SSL Certificate Registration"
+}

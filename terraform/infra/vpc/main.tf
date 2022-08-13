@@ -153,6 +153,15 @@ resource "aws_security_group_rule" "openvpn_ec2_tcp_ingress_22" {
   security_group_id = aws_security_group.openvpn_ec2_security_group.id
 }
 
+resource "aws_security_group_rule" "openvpn_ec2_tcp_ingress_80" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.openvpn_ec2_security_group.id
+}
+
 resource "aws_security_group_rule" "openvpn_ec2_tcp_ingress_943" {
   type              = "ingress"
   from_port         = 943
