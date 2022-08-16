@@ -81,10 +81,10 @@ data "aws_route53_zone" "myzone" {
 
 resource "aws_route53_record" "ec2" {
   zone_id = data.aws_route53_zone.myzone.zone_id
-  name    = "openvpn.${var.domain_name}"
+  name    = "${var.openvpn_hostname}"
   type    = "A"
   ttl     = 300
   records = [
-    aws_instance.openvpn_server.public_ip
+    aws_eip.openvpn_eip.public_ip
   ]
 }
