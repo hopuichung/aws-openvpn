@@ -1,2 +1,4 @@
 terraform/.terraform.lock.hcl
 terraform/.terraform/
+terraform/tfplan
+terraform/ap-east-1.tfvars
