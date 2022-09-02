@@ -42,7 +42,7 @@ admin_pw=${var.openvpn_server_password}
 
 # Setup automated script for refreshing Let's Encrypt cert
 echo "#!/bin/bash" > /usr/local/sbin/certrenewal.sh
-echo "certbot renew — standalone" >> /usr/local/sbin/certrenewal.sh
+echo "certbot renew --standalone" >> /usr/local/sbin/certrenewal.sh
 echo "sleep 1m" >> /usr/local/sbin/certrenewal.sh
 echo "/usr/local/openvpn_as/scripts/sacli --key "cs.priv_key" --value_file "/etc/letsencrypt/live/${var.openvpn_hostname}/privkey.pem" ConfigPut" >> /usr/local/sbin/certrenewal.sh
 echo "/usr/local/openvpn_as/scripts/sacli --key "cs.cert" --value_file "/etc/letsencrypt/live/${var.openvpn_hostname}/fullchain.pem" ConfigPut" >> /usr/local/sbin/certrenewal.sh
