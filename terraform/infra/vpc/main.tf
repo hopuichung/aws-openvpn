@@ -190,57 +190,57 @@ resource "aws_security_group_rule" "openvpn_ec2_udp_ingress_1194" {
 }
 
 # alb Security Group
-resource "aws_security_group" "openvpn_alb_security_group" {
-  name        = "openvpn-alb-security-group"
-  description = "Controll network access port for openvpn alb"
-  vpc_id      = aws_vpc.openvpn_vpc.id
+# resource "aws_security_group" "openvpn_alb_security_group" {
+#   name        = "openvpn-alb-security-group"
+#   description = "Controll network access port for openvpn alb"
+#   vpc_id      = aws_vpc.openvpn_vpc.id
 
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
+#   egress {
+#     from_port        = 0
+#     to_port          = 0
+#     protocol         = "-1"
+#     cidr_blocks      = ["0.0.0.0/0"]
+#     ipv6_cidr_blocks = ["::/0"]
+#   }
 
-  tags = {
-    Project = "openvpn-server"
-    Name    = "openvpn-security-group"
-  }
-}
+#   tags = {
+#     Project = "openvpn-server"
+#     Name    = "openvpn-security-group"
+#   }
+# }
 
-resource "aws_security_group_rule" "openvpn_alb_tcp_ingress_22" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = var.openvpn_admin_ip_whitelist
-  security_group_id = aws_security_group.openvpn_alb_security_group.id
-}
+# resource "aws_security_group_rule" "openvpn_alb_tcp_ingress_22" {
+#   type              = "ingress"
+#   from_port         = 22
+#   to_port           = 22
+#   protocol          = "tcp"
+#   cidr_blocks       = var.openvpn_admin_ip_whitelist
+#   security_group_id = aws_security_group.openvpn_alb_security_group.id
+# }
 
-resource "aws_security_group_rule" "openvpn_alb_tcp_ingress_943" {
-  type              = "ingress"
-  from_port         = 943
-  to_port           = 943
-  protocol          = "tcp"
-  cidr_blocks       = var.openvpn_admin_ip_whitelist
-  security_group_id = aws_security_group.openvpn_alb_security_group.id
-}
+# resource "aws_security_group_rule" "openvpn_alb_tcp_ingress_943" {
+#   type              = "ingress"
+#   from_port         = 943
+#   to_port           = 943
+#   protocol          = "tcp"
+#   cidr_blocks       = var.openvpn_admin_ip_whitelist
+#   security_group_id = aws_security_group.openvpn_alb_security_group.id
+# }
 
-resource "aws_security_group_rule" "openvpn_alb_tcp_ingress_443" {
-  type              = "ingress"
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.openvpn_alb_security_group.id
-}
+# resource "aws_security_group_rule" "openvpn_alb_tcp_ingress_443" {
+#   type              = "ingress"
+#   from_port         = 443
+#   to_port           = 443
+#   protocol          = "tcp"
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   security_group_id = aws_security_group.openvpn_alb_security_group.id
+# }
 
-resource "aws_security_group_rule" "openvpn_alb_udp_ingress_1194" {
-  type              = "ingress"
-  from_port         = 1194
-  to_port           = 1194
-  protocol          = "udp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.openvpn_alb_security_group.id
-}
+# resource "aws_security_group_rule" "openvpn_alb_udp_ingress_1194" {
+#   type              = "ingress"
+#   from_port         = 1194
+#   to_port           = 1194
+#   protocol          = "udp"
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   security_group_id = aws_security_group.openvpn_alb_security_group.id
+# }
