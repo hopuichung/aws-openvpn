@@ -81,7 +81,7 @@ data "aws_route53_zone" "myzone" {
 
 resource "aws_route53_record" "ec2" {
   zone_id = data.aws_route53_zone.myzone.zone_id
-  name    = "${var.openvpn_hostname}"
+  name    = var.openvpn_hostname
   type    = "A"
   ttl     = 300
   records = [
